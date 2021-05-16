@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<item
+    android:id="@+id/nav_day"
+    android:icon="@drawable/ic_baseline_edit_24"
+    android:title="Day"/>
+    <item
+        android:id="@+id/nav_week"
+        android:icon="@drawable/ic_baseline_share_24"
+        android:title="Week"/>
+    <item
+        android:id="@+id/nav_month"
+        android:icon="@drawable/ic_baseline_share_24"
+        android:title="Month"/>
+
+</menu>
