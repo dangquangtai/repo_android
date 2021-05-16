@@ -177,9 +177,11 @@ class MainActivity : AppCompatActivity() ,SensorEventListener{
             data.speed =speed.text.toString().toFloat()
             data.caloriesBurned =calories.text.toString().toFloat()
             val date = Date()
-            val strDateFormat = "MM/dd/yyyy"
+            val strDateFormat = "dd/MM/yyyy"
             val sdf = SimpleDateFormat(strDateFormat)
-            data.day = System.currentTimeMillis().toString()
+            val todayDate = sdf.format(date)
+            val FinalDay = convertDateToLong(todayDate)
+            data.day = FinalDay.toString()
             val checked = dbHelper.checkIsSave()
             if(checked == true){
                 dbHelper.updatePerdometerData(data)
@@ -364,7 +366,10 @@ class MainActivity : AppCompatActivity() ,SensorEventListener{
 //        transaction.commit()
 //
 //    }
-
+fun convertDateToLong(date: String): Long {
+    val df = SimpleDateFormat("dd/MM/yyyy")
+    return df.parse(date).time
+}
 
 }
 private fun SensorManager.unregisterListener(mainActivity: MainActivity, mStepCounter: Int) {

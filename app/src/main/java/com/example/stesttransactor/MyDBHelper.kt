@@ -105,8 +105,9 @@ class MyDBHelper(context: Context) : SQLiteOpenHelper(context, constn.DB_NAME, n
         val strDateFormat = "dd/MM/yyyy"
         val sdf = SimpleDateFormat(strDateFormat)
         val todayDate = sdf.format(date)
+        val FinalToDayDate =convertDateToLong(todayDate)
         val db = readableDatabase
-        val queryResult = db.rawQuery("SELECT * FROM $TABLE_PERDOMETER WHERE $COL_DAY ='$todayDate'", null)
+        val queryResult = db.rawQuery("SELECT * FROM $TABLE_PERDOMETER WHERE $COL_DAY ='$FinalToDayDate'", null)
 
         if (queryResult.moveToFirst()) {
             do {
@@ -156,7 +157,7 @@ class MyDBHelper(context: Context) : SQLiteOpenHelper(context, constn.DB_NAME, n
                 item.caloriesBurned = queryResult.getFloat(queryResult.getColumnIndex(COL_BURNED))
 
                 result.add(item)
-                Log.i("check", convertLongToTime(queryResult.getLong(queryResult.getColumnIndex(COL_DAY))))
+//                Log.i("check", convertLongToTime(queryResult.getLong(queryResult.getColumnIndex(COL_DAY))))
             } while (queryResult.moveToNext())
         }
 
